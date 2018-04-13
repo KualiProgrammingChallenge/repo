@@ -17,10 +17,27 @@
     </div>
 </div>
 <br/>
-<div class="row" style="padding-bottom: 10px;">
-    <div class="col-sm-2">
-      <a href="#" class="btn btn-primary">Add Elevator</a>
+<!--Ran of time to tie in the javascript with the UI--> 
+<div class="row" >
+    <div class="col-lg-4">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="ElevatorCount">Elevators</span>
+        </div>
+        <input type="text" class="form-control" aria-label="Default" aria-describedby="ElevatorCount">
+      </div>
     </div>
+    <div class="col-lg-4">
+        <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="FloorCount">Floors:</span>
+            </div>
+            <input type="text" class="form-control" name="Floors">
+          </div>
+    </div>
+</div>
+<div class="row">
+    <a href="#" class="btn btn-primary" onclick="initElevators()">Start</a>
 </div>
 <div class="jumbotron" style="padding-left: 10px; padding-right: 10px"> 
   <div class="row">
@@ -30,34 +47,15 @@
             <div class="card-body">
               <h5 class="card-title">Elevator 1</h5>
               <p class="card-text">Current Floor: 1</p>
-              <div class="row">
-                  <div class="col-sm-6"></div>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Select Floor
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">1</a>
-                          <a class="dropdown-item" href="#">2</a>
-                          <a class="dropdown-item" href="#">3</a>
-                        </div>
-                    </div>                    
+              <p class="card-text">Passed Floors: 1000</p>
+              <p class="card-text">Trips: 58</p>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="ElevatorCount">Enter Desired Floor:</span>
                   </div>
-                  <div class="col-sm-6">
-                    <span></span>
-                  </div>
-              </div>
-              <a href="#" class="btn btn-primary">Go to floor</a>
-            </div>
-          </div>
-    </div>
-    <div class="col-sm-2">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="/images/elevator.png" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Elevator 1</h5>
-              <p class="card-text">Current Floor: 1</p>
-              <a href="#" class="btn btn-primary">Go to floor</a>
+                  <input type="text" class="form-control" aria-label="Default" aria-describedby="ElevatorCount">
+                </div>
+              <a href="#" class="btn btn-primary">Call</a>
             </div>
         </div>
     </div>

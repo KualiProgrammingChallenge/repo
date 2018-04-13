@@ -61,18 +61,6 @@ function findClosetElevator(desiredFloor)
     return closest.id;
 }
 
-function startElevator(id, desiredFloor)
-{
-    elevators.forEach(element => {
-        if(element.id === id)
-        {
-            element.desiredFloor = desiredFloor
-            element.doorOpen = false;
-            element.occuppied = true;
-        }
-    });
-}
-
 function fetchElevator(id, desiredFloor)
 {    
     elevators.forEach(element => {
@@ -81,6 +69,7 @@ function fetchElevator(id, desiredFloor)
             element.desiredFloors.push(desiredFloor);
         }
     });
+    moveElevators();
 }
 
 function report(id,currentFloor)
