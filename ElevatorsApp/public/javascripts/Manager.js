@@ -13,7 +13,7 @@ function initElevators(elevatorCount, floorsCount)
 
 function addElevator()
 {
-    elevators.push({id: elevators.length, currentFloor: 1 , desiredFloors:[1], trips:0, doorOpen: false, occuppied: false})
+    elevators.push({id: elevators.length, currentFloor: 1 , desiredFloors:[1], trips:0, floorsPassed:0, doorOpen: false, occuppied: false})
 }
 
 function callElevator(desiredFloor)
@@ -79,7 +79,6 @@ function fetchElevator(id, desiredFloor)
         if(element.id === id)
         {
             element.desiredFloors.push(desiredFloor);
-            element.doorOpen = true;
         }
     });
 }
@@ -93,4 +92,53 @@ function report(id,currentFloor)
             element.doorOpen = true;
         }
     });
+}
+
+function moveElevators()
+{
+    var elevatorsOccupied = true;
+    while(true)
+    {
+        var moving = false;
+        elevators.forEach(elevator, index => {
+            if(elevator.occuppied === true && !isDesiredFloor(elevator.currentFloor, element))
+            {                
+                moving = true;
+                elevator.doorOpen = false;
+                elevator.currentFloor++;
+                elevator.floorsPassed++;
+            }
+            if(elevator.occuppied === true && isDesiredFloor(elevator.currentFloor, elevator))
+            {                
+                elevator.doorOpen = true;
+                removeDesiredFloors(index)
+            }
+            if(elevator.desiredFloors.length == 0)
+            {
+                elevator.doorOpen = false;
+                elevators.trips++;
+            }
+        });
+
+        if(!moving)
+        {
+            elevatorsOccupied = false;
+        }
+    }
+}
+
+function isDesiredFloor(floor, elevator)
+{
+    elevator.desiredFloors.forEach(floorNum => {
+        if(floorNum == floor)
+        {
+            return true;
+        }
+    });
+    return false;
+}
+
+function removeDesiredFloors(index)
+{
+    elevator.splice(index,1);
 }
