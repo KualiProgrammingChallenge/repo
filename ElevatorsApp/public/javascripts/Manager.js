@@ -13,7 +13,7 @@ function initElevators(elevatorCount, floorsCount)
 
 function addElevator()
 {
-    elevators.push({id: elevators.length, currentFloor: 1 , desiredFloor:1, trips:0, doorOpen: false})
+    elevators.push({id: elevators.length, currentFloor: 1 , desiredFloors:[1], trips:0, doorOpen: false, occuppied: false})
 }
 
 function callElevator(desiredFloor)
@@ -48,7 +48,7 @@ function findClosetElevator(desiredFloor)
             closest.id = element.id ;
             closest.distance = distance;            
         }
-        if(element.currentFloor == desiredFloor)
+        if(element.currentFloor == desiredFloor && element.occuppied == false)
         {
             return element.id;
         }
@@ -68,6 +68,7 @@ function startElevator(id, desiredFloor)
         {
             element.desiredFloor = desiredFloor
             element.doorOpen = false;
+            element.occuppied = true;
         }
     });
 }
@@ -77,7 +78,18 @@ function fetchElevator(id, desiredFloor)
     elevators.forEach(element => {
         if(element.id === id)
         {
-            element.currentFloor= desiredFloor
+            element.desiredFloors.push(desiredFloor);
+            element.doorOpen = true;
+        }
+    });
+}
+
+function report(id,currentFloor)
+{
+    elevators.forEach(element => {
+        if(element.id === id)
+        {
+            element.currentFloor= currentFloor;
             element.doorOpen = true;
         }
     });
